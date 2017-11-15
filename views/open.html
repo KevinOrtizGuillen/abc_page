@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>holas</title>
+</head>
+<body>
+como esta esa gente
+<h2>Loop</h2>
+
+<ul>
+    <% drinks.forEach(function(drink) { %>
+        <li><%= drink.name %> - <%= drink.drunkness %></li>
+    <% }); %>
+</ul>
+<p>
+	<%= tagline %>
+</p>
+<section>	
+	<form method="POST" enctype="multipart/form-data" action="/subir">
+		<input type="text" name="nombre">
+		<input type="file" name="miarchivo">
+		<input type="submit" label="subir">	
+	</form>
+	<!--<form id="login" method="POST" action="/login">
+		<input type="text" name="email" id="email">
+		<input type="password" name="password" id="password">
+		<input type="submit" name="login">-->
+	</form>
+</section>
+</body>
+</html>

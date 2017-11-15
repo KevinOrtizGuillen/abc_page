@@ -1,0 +1,1 @@
+exports.plataforma=require('./plataforma');
