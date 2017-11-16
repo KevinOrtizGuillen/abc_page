@@ -142,7 +142,7 @@
 		<div id="resterForm">
 			<h3 class="title">Nuevo usuario</h3 class="title">
 			<div class="formularios row">
-				<form class="col-6">
+				<form method="POST" action="/nUsuarioPost" class="col-6">
 					<div class="form-group">
 						<label for="name_in">Nombres</label>
 						<input type="text" class="form-control" id="name_in" name="name_in" placeholder="Rosita" required="">
@@ -165,7 +165,7 @@
 					</div>
 					<button type="submit" class="btn btn-outline-light">Guardar</button>
 				</form>
-				<form class="col-6">
+				<form method="POST" action="/login" class="col-6">
 					<div class="form-group">
 						<label for="correo_log">Correo</label>
 						<input type="email" class="form-control" id="correo_log" name="correo_log" placeholder="name@example.com">
