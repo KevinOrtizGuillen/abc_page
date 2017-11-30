@@ -128,3 +128,6 @@ body{
 	text-decoration: none;
 	color: gray;
 }
+.nav-item{
+	list-style: none;
+}
