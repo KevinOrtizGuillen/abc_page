@@ -60,18 +60,28 @@ body{
 	padding: 20px;
 	background: #F0F0F0;
 }
+.contenedorGeneral-g{
+	padding: 0;
+	background: #F0F0F0;
+}
+.contenedorGeneral-g>nav{
+	background: gray;
+}
 #zonas-show>h3{
 	text-align: center;
 }
+.targets>.contentZonas,
 #zonas-show>.contentZonas{
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 }
+.targets>.contentZonas>a,
 #zonas-show>.contentZonas>a{
 	color: gray;
 	text-decoration: none;
 }
+.targets>.contentZonas>.card,
 #zonas-show>.contentZonas>.card{
 	margin: 10px;
 	width: 300px;
@@ -86,7 +96,7 @@ body{
 	color: #fff;
 }
 #resterForm>.formularios{
-	width: 80%;
+	width: 100%;
 	padding-left: 10px;
 	color: #fff;
 }
@@ -130,4 +140,29 @@ body{
 }
 .nav-item{
 	list-style: none;
+}
+
+.imagenesChange{
+	padding: 20px;
+}
+.imagenesChange>div{
+	padding: 10px;
+	/*background: rgba(0,0,0,.1);*/
+	border: dotted 2px rgba(0,0,0,.2);;
+	height: 100%;
+}
+.imagenesChange>.imagenMuestraF{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column
+}
+.imagenesChange>.imagenMuestraF>#imagesC{
+	display: flex;
+	flex-wrap: wrap;
+  justify-content: center;
+}
+.imagenesChange>.imagenMuestraF>#imagesC>img{
+	margin: 5px;
+	width: 200px;
 }

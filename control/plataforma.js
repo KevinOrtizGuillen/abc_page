@@ -111,3 +111,10 @@ exports.nUsuarioPost=function(req,res){
 	}
 	return out( );
 }
+exports.adminPage=function(req, res){
+	function out(){
+		console.log(res);
+		res.render('./home/pageAdmin.html',{redirect:req.query.redirect});
+	}
+	return out();
+};
