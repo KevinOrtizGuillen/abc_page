@@ -73,70 +73,16 @@
 		<div id="zonas-show" class="contenedorGeneral">
 			<h3 class="title wow slideInLeft">Zonas turisticas</h3 class="title">
 			<div class="contentZonas">
-				<a class="card wow fadeIn" href="home/info.html">
+				<% data.forEach(function(datos) { %>       			 
+       			 <a class="card wow fadeIn" href='/infozona?zonat="<%= datos.zonat %>"' >
 					<img class="card-img-top wow bounceIn" src="img-page/fondo.jpg" alt="Card image cap">
 					<div class="card-body">
-						<h4 class="card-title wow fadeIn">Zona 1</h4>
-						<p class="card-text wow rollIn">Una Zona muy maravillosa ...</p>
-						<p class="card-text wow wobble"><small class="text-muted">Publicado hace 3 min atras</small></p>
+						<h4 class="card-title wow fadeIn"><%= datos.zonat %></h4>
+						<p class="card-text wow rollIn"><%= datos.comentarios %></p>
+						<p class="card-text wow wobble"><small class="text-muted"><%= datos.registro %></small></p>
 					</div>
 				</a>
-				<a class="card wow fadeIn" href="#">
-					<img class="card-img-top wow bounceIn" src="img-page/fondo.jpg" alt="Card image cap">
-					<div class="card-body">
-						<h4 class="card-title wow fadeIn">Zona 1</h4>
-						<p class="card-text wow rollIn">Una Zona muy maravillosa ...</p>
-						<p class="card-text wow wobble"><small class="text-muted">Publicado hace 3 min atras</small></p>
-					</div>
-				</a>
-				<a class="card wow fadeIn" href="#">
-					<img class="card-img-top wow bounceIn" src="img-page/fondo.jpg" alt="Card image cap">
-					<div class="card-body">
-						<h4 class="card-title wow fadeIn">Zona 1</h4>
-						<p class="card-text wow rollIn">Una Zona muy maravillosa ...</p>
-						<p class="card-text wow wobble"><small class="text-muted">Publicado hace 3 min atras</small></p>
-					</div>
-				</a>
-				<a class="card wow fadeIn" href="#">
-					<img class="card-img-top wow bounceIn" src="img-page/fondo.jpg" alt="Card image cap">
-					<div class="card-body">
-						<h4 class="card-title wow fadeIn">Zona 1</h4>
-						<p class="card-text wow rollIn">Una Zona muy maravillosa ...</p>
-						<p class="card-text wow wobble"><small class="text-muted">Publicado hace 3 min atras</small></p>
-					</div>
-				</a>
-				<a class="card wow fadeIn" href="#">
-					<img class="card-img-top wow bounceIn" src="img-page/fondo.jpg" alt="Card image cap">
-					<div class="card-body">
-						<h4 class="card-title wow fadeIn">Zona 1</h4>
-						<p class="card-text wow rollIn">Una Zona muy maravillosa ...</p>
-						<p class="card-text wow wobble"><small class="text-muted">Publicado hace 3 min atras</small></p>
-					</div>
-				</a>
-				<a class="card wow fadeIn" href="#">
-					<img class="card-img-top wow bounceIn" src="img-page/fondo.jpg" alt="Card image cap">
-					<div class="card-body">
-						<h4 class="card-title wow fadeIn">Zona 1</h4>
-						<p class="card-text wow rollIn">Una Zona muy maravillosa ...</p>
-						<p class="card-text wow wobble"><small class="text-muted">Publicado hace 3 min atras</small></p>
-					</div>
-				</a>
-				<a class="card wow fadeIn" href="#">
-					<img class="card-img-top wow bounceIn" src="img-page/fondo.jpg" alt="Card image cap">
-					<div class="card-body">
-						<h4 class="card-title wow fadeIn">Zona 1</h4>
-						<p class="card-text wow rollIn">Una Zona muy maravillosa ...</p>
-						<p class="card-text wow wobble"><small class="text-muted">Publicado hace 3 min atras</small></p>
-					</div>
-				</a>
-				<a class="card wow fadeIn" href="#">
-					<img class="card-img-top wow bounceIn" src="img-page/fondo.jpg" alt="Card image cap">
-					<div class="card-body">
-						<h4 class="card-title wow fadeIn">Zona 1</h4>
-						<p class="card-text wow rollIn">Una Zona muy maravillosa ...</p>
-						<p class="card-text wow wobble"><small class="text-muted">Publicado hace 3 min atras</small></p>
-					</div>
-				</a>
+    			<% }); %>												
 			</div>
 		</div>
 		<div id="resterForm">

@@ -7,8 +7,36 @@ exports.setup=function(_modelo){
 }
 exports.open=function(req, res){
 	function out( ){
-		
-		res.render('index.html',{redirect:req.query.redirect});
+		modelo.usuarios.find({},{zonat:1},function(err,row){
+			var data={};
+			if (err) {
+				data.status=-1;
+				data.data=null;
+				console.log("czonas codeErr:-1");
+			}else if(row.length==0){
+				data.status=0;
+				data.data=null;
+			}else{
+				data.status=1;
+				listar=[];						
+				row.forEach(function(e){
+					recorre=e.zonat;
+					recorre.forEach(function(e1){
+						objListar={};
+						objListar.zonat=e1.zonat;
+						objListar.pais=e1.pais;
+						objListar.region=e1.region;
+						objListar.provincia=e1.provincia;
+						objListar.distrito=e1.distrito;
+						objListar.registro=moment(e1.registro).fromNow();
+						objListar.comentarios=e1.comentarios[0].comentario;
+						listar.push(objListar);							
+					});					
+				});				
+				data.data=listar;
+				res.render('index.html',{redirect:req.query.redirect,data:data.data});
+			}
+		});
 	}
 	return out();
 };

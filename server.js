@@ -5,6 +5,7 @@ var express = require('express')
 , cookieParser=require('cookie-parser')
 , session=require('express-session')
 , bodyParser=require('body-parser')
+, async=require('async')
 , control=require('./control')
 , modelo=require('./modelo')
 , config=require('./config')
@@ -38,7 +39,7 @@ row.save(function(err){
   }
 });*/ 
 //
-
+//cargarData();
 function compile(str,path){
   return stylus(str)
   .set('filename',path)
@@ -84,3 +85,62 @@ app.get('/login',control.plataforma.loginGet);
 app.post('/login',control.plataforma.loginPost);
 app.post('/nUsuarioPost',control.plataforma.nUsuarioPost);
 app.get('/infozona',control.zonas.infozonaGET);
+
+
+
+//cargar datos al sistema
+function cargarData(){
+  console.log("Iniciando carga");
+  //
+    var coment={};
+    coment.correo="esdekevin@gmail.com";
+    coment.fecha=new Date();
+    coment.comentario="QUe lindo lugar, para poder recordar la historia del Perú";
+  //
+    var tiemp={};
+    tiemp.temperatura="15°C";
+    tiemp.humedad="clima frigido";
+    tiemp.fecha=new Date();
+  //
+    var val={};
+    val.calificacion=4;
+  //
+    var foto={};
+    foto.url="./img-page/foto2.jpg";
+    foto.valoracion=[val];
+  //
+    var ubic={};
+    ubic.longitud="-13.33333";
+    ubic.latitud="-17.111245";
+    ubic.altitud="14.222";
+  //
+    var zonas={};
+    zonas.zonat="Pampa de Quinua";
+    zonas.pais="Republica de Ayacucho";
+    zonas.region="Ayacucho";
+    zonas.provincia="Huamanga";
+    zonas.distrito="Huamanga";
+    zonas.descripcion="Santuario Histórico de la Pampa de Ayacucho se estableció el 14 de julio de 1980,. Su objetivo principal es proteger el patrimonio natural e histórico del escenario donde se realizó el 9 de diciembre de 1824 la Batalla de Ayacucho,último gran enfrentamiento dentro de las campañas terrestres de las guerras de independencia hispanoamericanas, así como conservar las manifestaciones culturales y artesanales de las poblaciones aledañas. Es escenario, cada 9 de diciembre, de la escenificación de dicha batalla, con presencia de más de 10 mil.actores entre profesionales y voluntarios. Asimismo, su presencia busca mejorar y ampliar el circuito turístico Ayacucho - Wari - Quinua - Pampas de Ayacucho, y brindar facilidades para que el público utilice el área para su recreación y cultura.1​ Tiene un área de 300 hectáreas.";
+    zonas.registro=new Date();
+    zonas.comentarios=[coment];
+    zonas.tiempo=[tiemp];
+    zonas.fotos=[foto];
+    zonas.ubicacion=[ubic];    
+  //
+    var row=new modelo.usuarios;
+      row.nombres="saul";
+      row.apellidos="Ortiz Guillen";
+      row.email="saul@gmail.com";
+      row.contraseña="ffb4761cba839470133bee36aeb139f58d7dbaa9";//kevin
+      row.imagen="";
+      row.permisos="A";
+      row.registro=new Date(); 
+      row.zonat=[zonas];         
+      row.save(function(err){
+        if (err) {
+          console.log("err");
+        }else{
+          console.log(row.nombres +"addeded 1");          
+        }
+      });     
+}

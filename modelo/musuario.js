@@ -6,7 +6,7 @@ exports.setup=function(_mongoose,_db){
 		var coleccion_comentarios= new mongoose.Schema({
 			correo: String,
 			fecha: Date,
-			tiempo: String
+			comentario: String
 	    });
 		var coleccion_tiempo= new mongoose.Schema({
 			temperatura: String,
@@ -34,6 +34,7 @@ exports.setup=function(_mongoose,_db){
 			region: String,
 			provincia: String,
 			distrito: String,
+			descripcion: String,
 			registro:Date,
 			comentarios: [coleccion_comentarios],
 			tiempo: [coleccion_tiempo],
