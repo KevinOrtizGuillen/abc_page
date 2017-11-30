@@ -89,9 +89,9 @@
 			</div>
 		</div>
 		<div id="resterForm">
-			<h3 class="title">Nuevo usuario</h3 class="title">
-			<div class="formularios row">
-				<form method="POST" action="/nUsuarioPost" class="col-6">
+			<div class="formularios">
+				<form method="POST" action="/nUsuarioPost" class="col-6" style="margin: auto;">
+					<h3 class="form-group">Nuevo usuario</h3>
 					<div class="form-group">
 						<label for="name_in">Nombres</label>
 						<input type="text" class="form-control" id="name_in" name="name_in" placeholder="Rosita" required="">
@@ -113,6 +113,7 @@
 						<input type="password" class="form-control" id="repass_in" name="repass_in" required="">
 					</div>
 					<button type="submit" class="btn btn-outline-light">Guardar</button>
+					<button type="button" class="btn btn-outline-info" onclick="$('#mostrarError').modal();">Manejo error</button>
 				</form>
 			</div>
 		</div>
@@ -144,12 +145,42 @@
 						<label for="password_log">Contraseña</label>
 						<input type="password" class="form-control" id="password_log" name="password_log" required="">
 					</div>
+					<div class="alert alert-success" role="alert">
+						En momentos le redirigimos a la pagina administrativa
+					</div>
+					<div class="alert alert-danger" role="alert">
+						Ocurrio un error, ingrese los datos corectos
+					</div>
 				</div>
 				<div class="modal-footer">
+					<button type="button" class="btn btn-info">Administrativa</button>
 					<button type="submit" class="btn btn-primary">Ingresar</button>
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 				</div>
 			</form>
+		</div>
+	</div>
+	<!-- Modal errors -->
+	<div class="modal" tabindex="-1" role="dialog" id="mostrarError">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content" action="/login" method="POST">
+				<div class="modal-header">
+					<h5 class="modal-title">Estado</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="alert alert-success" role="alert">
+						Registrado con exito
+					</div>
+					<div class="alert alert-danger" role="alert">
+						Ocurrio un error, usuario ya existe
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success" onclick="$('#mostrarError').modal('hide');$('#ingresoSistem').modal();">Ingresar</button>
+				</div>
+			</div>
 		</div>
 	</div>
 	<script type="text/javascript">
