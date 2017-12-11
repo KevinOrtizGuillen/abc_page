@@ -85,6 +85,7 @@ app.get('/login',control.plataforma.loginGet);
 app.post('/login',control.plataforma.loginPost);
 app.post('/nUsuarioPost',control.plataforma.nUsuarioPost);
 app.get('/infozona',control.zonas.infozonaGET);
+//app.post('/subirFoto',control.)
 
 
 

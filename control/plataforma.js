@@ -56,29 +56,30 @@ exports.loginPost=function(req, res){
 				data.status=-1;
 				data.data=null;
 				console.log("plataforma codeErr: -1");
-			}else{	
-				if (row.length===0) {
-					data.msn='plataforma codeErr: 0';
-					data.status=0;
-					data.data=null;
-					console.log("plataforma codeErr: 0")
-				}else{
-					var usuario={};					
-						usuario.nombre=row.nombres;
-						usuario.apellidos=row.apellidos;
-						usuario.email=row.email;
-						usuario.contraseña=row.contraseña;
-						usuario.imagen=row.imagen;
-						usuario.permisos=row.permisos;
-						usuario.registro=moment(row.registro).fromNow();
-					  data.data=usuario;
-					  data.msn='Succesfull';
-					  data.status=1;
-				    console.log("plataforma codeErr: 1");
-				}
+				res.redirect('/');	
+			}else if (row===null) {
+				data.msn='plataforma codeErr: 0';
+				data.status=0;
+				data.data=null;
+				console.log("plataforma codeErr: 0");
+				res.redirect('/');	
+			}else{
+				var usuario={};					
+					usuario.nombre=row.nombres;
+					usuario.apellidos=row.apellidos;
+					usuario.email=row.email;
+					usuario.contraseña=row.contraseña;
+					usuario.imagen=row.imagen;
+					usuario.permisos=row.permisos;
+					usuario.registro=moment(row.registro).fromNow();
+				  data.data=usuario;
+				  data.msn='Succesfull';
+				  data.status=1;
+			    console.log("plataforma codeErr: 1");
+				res.render('open.html',{title:"hola a todos",data:data});
 			}
-			res.render('open.html',{title:"hola a todos",data:data});
-		});		
+			//res.redirect('/');				
+		});			
 	}
 	return out( );
 };
