@@ -64,6 +64,10 @@ exports.loginPost=function(req, res){
 				console.log("plataforma codeErr: 0");
 				res.redirect('/');	
 			}else{
+				req.session.usuario_id=row._id;
+				req.session.usuario_email=row.email;
+				req.session.usuario_permiso=row.permisos;
+				req.session.nombre_usuario=row.nombres;
 				var usuario={};					
 					usuario.nombre=row.nombres;
 					usuario.apellidos=row.apellidos;
@@ -76,7 +80,8 @@ exports.loginPost=function(req, res){
 				  data.msn='Succesfull';
 				  data.status=1;
 			    console.log("plataforma codeErr: 1");
-				res.render('open.html',{title:"hola a todos",data:data});
+				//res.render('open.html',{title:"hola a todos",data:data});
+				res.render('./home/pageAdmin.html',{title:"hola a todos",data:data});
 			}
 			//res.redirect('/');				
 		});			
@@ -106,9 +111,15 @@ exports.nUsuarioPost=function(req,res){
 				data.status=1;
 				console.log('plataforma codeErr: 1');
 			}
-		//res.redirect('index.html',{redirect:req.query.redirect});
-		 res.status(301).redirect('/?#resterForm')
+		 res.render('./home/pageAdmin.html',{data:data});
 		});
 	}
 	return out( );
 }
+exports.adminPage=function(req, res){
+	function out(){
+		//console.log(res);
+		res.render('./home/pageAdmin.html',{redirect:req.query.redirect});
+	}
+	return out();
+};

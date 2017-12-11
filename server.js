@@ -73,7 +73,7 @@ function IsAuthenticated(req,res,next){
   if (req.session.usuario_id) {
     next();
   }else{
-    res.redirect('/login?redirect='+path);
+    res.status(301).redirect('/?#resterForm');//res.redirect('/login?redirect='+path);
   }
 }
 control.plataforma.setup(modelo);
@@ -85,7 +85,8 @@ app.get('/login',control.plataforma.loginGet);
 app.post('/login',control.plataforma.loginPost);
 app.post('/nUsuarioPost',control.plataforma.nUsuarioPost);
 app.get('/infozona',control.zonas.infozonaGET);
-//app.post('/subirFoto',control.)
+app.get('/adminLog',IsAuthenticated,control.plataforma.adminPage);
+
 
 
 

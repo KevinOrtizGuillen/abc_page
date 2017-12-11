@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<title>Zona turistica || admin</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="icon" href="../img/logo.svg">
+		<link rel="stylesheet" href="../css/bootstrap.min.css" crossorigin="anonymous">
+		<link rel="stylesheet" href="../css/animate.min.css">
+		<link rel="stylesheet" href="../css/style.css">
+
+		<script src="../js/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+		<script src="../js/jquery.min.js" crossorigin="anonymous"></script>
+		<script src="../js/popper.min.js" crossorigin="anonymous"></script>
+		<script src="../js/bootstrap.min.js" crossorigin="anonymous"></script>
+		<script src="../js/wow.min.js" crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg menupersonal" style="background: gray;">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menuNavegacion" aria-controls="menuNavegacion" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="menuNavegacion">
+				<a class="navbar-brand logoimg" href="#carouselPAge">
+					<img src="../img/logo.svg"> ABC
+				</a>
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					<li class="nav-item active">
+						<a class="nav-link" href="/" >Regresar</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link linkOffset" href="#misZonas">Mis zonas</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link linkOffset" href="#nuevaZona">Nueva zona</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link linkOffset" href="#galeria">Galeria</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link linkOffset" href="#nosotros">Nosotros</a>
+					</li>
+				</ul>
+				<form class="form-inline my-2 my-lg-0">
+					<input class="form-control mr-sm-2" type="search" placeholder="Buscar .." aria-label="Search">
+					<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
+				</form>
+			</div>
+		</nav>
+		<div class="contenedorGeneral" id="nuevaZona">
+			<h3 class="text-center text-muted">Nueva zona</h3>
+			<div class="formularios row" style="max-width: 1400px;margin: auto;">
+				<div class="imgs imagenesChange" style="flex: 0 0 60%">
+					<div class="rounded float-righ imagenMuestraF" id="imagenesMuestra">
+						<div id="imagesC"></div>
+						<p class="btn btn-outline-primary" onclick="$('#filesUpload').click()">Seleccione una imagen</p>
+					</div>
+					<input type="file" name="filesUpload" id="filesUpload" style="display: none;" multiple="">
+				</div>
+				<form method="POST" action="#" class="" style="margin: auto;flex: 0 0 40%;">
+					<div class="form-group">
+						<label for="paisSelect">Pais</label>
+						<select class="form-control" id="paisSelect" name="paisSelect" required="">
+							<option value="Perú">Perú</option>
+							<option value="Brazil">Brazil</option>
+							<option value="Argentina">Argentina</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="regSelect">Region</label>
+						<select class="form-control" id="regSelect" name="regSelect" required="">
+							<option value="Perú">Apurimac</option>
+							<option value="Brazil">Ayacucho</option>
+							<option value="Argentina">Cusco</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="provSelect">Provincia</label>
+						<select class="form-control" id="provSelect" name="provSelect" required="">
+							<option value="Andahuaylas">Andahuaylas</option>
+							<option value="Abancay">Abancay</option>
+							<option value="Chincheros">Chincheros</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="distSelect">Distrito</label>
+						<select class="form-control" id="distSelect" name="distSelect" required="">
+							<option value="Andahuaylas">Andahuaylas</option>
+							<option value="Pacucha">Pacucha</option>
+							<option value="Turpo">Turpo</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="zona_in">Zona</label>
+						<input type="text" class="form-control" id="zona_in" name="zona_in" placeholder="Sondor .." required="">
+					</div>
+					<div class="form-group">
+						<label for="desc_in">Descripcion</label>
+						<textarea class="form-control" id="desc_in" name="desc_in" placeholder="Un lugar turistico construido por los chankas ..." required="" rows="10"></textarea>
+					</div>
+					<div class="form-group alert alert-success" role="alert">
+						Registrado con exito
+					</div>
+					<div class="form-group alert alert-danger" role="alert">
+						Ocurrio un error
+					</div>
+					<button type="submit" class="btn btn-outline-success">Guardar</button>
+				</form>
+			</div>
+		</div>
+		<div id="misZonas" class="contenedorGeneral">
+			<hr>
+			<h3 class="text-center text-muted">Mis zonas turisticas</h3>
+			<table class="table table-hover table-striped">
+				<thead>
+					<tr class="bg-info text-white">
+						<th>#</th>
+						<th>Pais</th>
+						<th>Region</th>
+						<th>Provincia</th>
+						<th>Distrito</th>
+						<th>Zona</th>
+						<th>Descripcion</th>
+						<th>Fecha</th>
+						<th>op.</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">1</th>
+						<td>Peru</td>
+						<td>Apurimac</td>
+						<td>Andahuaylas</td>
+						<td>Pacucha</td>
+						<td>Sondor</td>
+						<td>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+							cillum dolore eu fugiat nulla paria ...
+						</td>
+						<td>2017/12/15</td>
+						<td>
+							<span class="btn btn-danger">el</span>
+							<span class="btn btn-success">ed</span>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">1</th>
+						<td>Peru</td>
+						<td>Apurimac</td>
+						<td>Andahuaylas</td>
+						<td>Pacucha</td>
+						<td>Sondor</td>
+						<td>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+							cillum dolore eu fugiat nulla paria ...
+						</td>
+						<td>2017/12/15</td>
+						<td>
+							<span class="btn btn-danger">el</span>
+							<span class="btn btn-success">ed</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div id="galeria" class="contenedorGeneral targets">
+			<hr>
+			<h3 class="text-center text-muted">Mis galeria</h3>
+			<div class="contentZonas">
+				<a class="card wow fadeIn" href='#'>
+					<img class="card-img-top wow bounceIn" src="img-page/fondo.jpg" alt="Card image cap">
+					<div class="card-body">
+						<h4 class="card-title wow fadeIn">Sondor</h4>
+						<p class="card-text wow wobble"><small class="text-muted">Agregado hace 9 dias</small></p>
+					</div>
+				</a>
+			</div>
+		</div>
+		<div id="nosotros" class="contenedorGeneral">
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		</div>
+	</body>
+	<script type="text/javascript">
+		function scrollNav() {
+			$('.menupersonal .linkOffset').click(function(){  
+				//Toggle Class
+				//$(".active").removeClass("active");      
+				//$(this).closest('li').addClass("active");
+				var theClass = $(this).attr("class");
+				$('.'+theClass).parent('li').addClass('active');
+				//Animate
+				$('html, body').stop().animate({
+					scrollTop: $( $(this).attr('href') ).offset().top - ($(".menupersonal")[0].offsetHeight + 30)
+				}, 400);
+				return false;
+			});
+			//$('.scrollTop a').scrollTop();
+		}
+		scrollNav();
+		/////
+		$(window).scroll(function() {
+			if ($(this).scrollTop() > 70) {  
+				$('.menupersonal').addClass("menuFixed");
+			}
+			else{
+				$('.menupersonal').removeClass("menuFixed");
+			}
+		});
+		//////
+		new WOW().init();
+		$(document).ready(function(){
+			// 
+			$("#filesUpload").change(function(e){
+				var files = e.target.files;
+				for (var i = 0; i < files.length; i++) {
+					var fA = files[i];
+					var reader = new FileReader();
+
+					if (!fA.type.match('image.*')) continue;
+
+					reader.onload = function(e){
+						var img = e.target.result;
+						var tagIm = $("<img class='imagenMuestraCargado img-thumbnail' src='" + img + "'>");
+
+						$("#imagesC").append(tagIm);
+					}
+					reader.readAsDataURL(fA);
+					console.log(fA);
+				}
+				console.log(files);
+			});
+			console.log("hola");
+		})
+	</script>
+</html>
