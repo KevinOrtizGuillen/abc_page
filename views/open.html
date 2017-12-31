@@ -7,24 +7,12 @@
 como esta esa gente
 <h2>Loop</h2>
 
-<ul>
-     <li label="Nombres"><%= data.data.nombre %></li>
-     <li label="apellidos"><%= data.data.apellidos %></li>
-     <li label="email"><%= data.data.email %></li>
-     <li label="contraseña"><%= data.data.contraseña %></li>
-     <li label="imagen"><%= data.data.imagen %></li>
-     <li label="permisos"><%= data.data.permisos %></li>
-     <li label="registro"><%= data.data.registro %></li>     
-</ul>
-<p>Mensage : <%= data.msn %></p>
-<p>Estado : <%= data.status %></p>
 <section>	
+     <section>
+          <h1>aqui esta la imagen</h1></br>
+          <img src="<%= urlimagen %>" alt="">
+     <img src="/imagenes/3D-Computer-Wallpaper-Built-by-Robot-1024x640_1E8N52q.jpg" alt=""></section>
      <h1>Seleccione una foto para poder subirlo</h1>
-	<form method="POST" enctype="multipart/form-data" action="/subir">
-		<input type="text" name="nombre">
-		<input type="file" name="miarchivo">
-		<input type="submit" label="subir">	
-	</form>
 	
 </section>
 </body>

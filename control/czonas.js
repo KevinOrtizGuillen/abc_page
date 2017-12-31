@@ -8,11 +8,9 @@ exports.setup=function(_modelo){
 };
 exports.infozonaGET=function(req,res){
 	function out(){	
-		data=req.query;
-		console.log('hasta aqui zona');		
-		zonatb=data.zonat;
-		console.log(zonatb);
-		modelo.usuarios.find({"zonat.zonat":"Pampa de Quinua"},{zonat:1},function(err,row){
+		data=req.query;			
+		zonatb=data.zonat;		
+		modelo.usuarios.findOne({"zonat.zonat":zonatb},{zonat:0},function(err,row){
 			var data={};
 			if (err) {
 				data.status=-1;
@@ -27,8 +25,9 @@ exports.infozonaGET=function(req,res){
 				data.status=1;
 				listar=[];
 				console.log('row: ');
-				console.log(row);							
-				row.forEach(function(e){					
+				//console.log(row);	
+				e=row;						
+				/*row.forEach(function(e){*/
 					recorre=e.zonat;					
 					recorre.forEach(function(e1){						
 						objListar={};
@@ -39,22 +38,29 @@ exports.infozonaGET=function(req,res){
 						objListar.distrito=e1.distrito;
 						objListar.descripcion=e1.descripcion;
 						objListar.registro=moment(e1.registro).fromNow();
-						//
+						objListar.fotos=e1.fotos;
+						console.log('aqui  '+e1.fotos);
 						listComent=[];
-						e1.comentarios.forEach(function(ec){
-							objCL={};
-							objCL.correo=ec.correo;
-							objCL.comentario=ec.comentario;
-							objCL.fecha=moment(ec.fecha).fromNow();
-							listComent.push(objCL);
-						});
-						//
+						if (e1.comentarios!=null && e1.comentarios!='' && e1.comentarios.length!=0) {
+							console.log('hasta aqui zona:si hay datos ');	
+							e1.comentarios.forEach(function(ec){
+								objCL={};
+								objCL.correo=ec.correo;
+								objCL.comentario=ec.comentario;
+								objCL.fecha=moment(ec.fecha).fromNow();
+								listComent.push(objCL);
+							});
+						} else {	
+							console.log('hasta aqui zona:null || vacio');							
+							registro=new Date();							
+							listComent.push({correo:"tu@gmail.com",fecha:moment(registro).fromNow(),comentario:"Aun no ha comentado nadie se el primero en comentar esto"});							
+						}
 						objListar.comentarios=listComent;
 						listar.push(objListar);
-						console.log('aqui en info zona');	
-						console.log(e1);
+						//console.log('aqui en info zona');	
+						//console.log(e1);
 					});					
-				});				
+				/*});*/
 				data.data=listar[0];
 				res.render('./home/info.html',{data:data.data});
 			}

@@ -43,7 +43,7 @@ exports.setup=function(_mongoose,_db){
 		});
 
 		var coleccion_registro=new mongoose.Schema({
-                contraseña_antigua: String,
+                contrasena_antigua: String,
                 fecha: Date,
                 tiempo: String
 		});
@@ -52,7 +52,7 @@ exports.setup=function(_mongoose,_db){
 			nombres: String,
 			apellidos: String,
 			email: String,
-			contraseña: String,
+			contrasena: String,
 			imagen: String,
 			permisos: String,
 			registro:Date,
