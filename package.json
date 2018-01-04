@@ -1,5 +1,5 @@
 {
-  "name": "abcturismo",
+  "name": "abc_page",
   "version": "1.0.0",
   "description": "aplicacion para nodejs en openshift",
   "main": "node server.js",
@@ -17,13 +17,23 @@
     "stylus": "^0.54.5"
   },
   "devDependencies": {},
-  "scripts": {
-    "test": "node server.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KevinOrtizGuillen/abc_page.git"
+  },
+  "engine":{
+    "node":"*",
+    "npm":"*"
+  },  
+  "scripts": {    
     "start": "node server.js"
   },
   "keywords": [
     "node"
   ],
-  "author": "Kevin Ortiz Guillen",
-  "license": "ISC"
+  "author": {
+    "name":"Kevin ,Yordanch ,Miqueas"
+  },
+  "private": true,
+  "main": "server.js"
 }
