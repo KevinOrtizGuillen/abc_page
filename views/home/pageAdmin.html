@@ -26,7 +26,7 @@
 				</a>
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 					<li class="nav-item active">
-						<a class="nav-link" href="/" >Regresar</a>
+						<a class="nav-link" href="/logout" >Regresar</a>
 					</li>
 					<li class="nav-item active">
 						<a class="nav-link linkOffset" href="#misZonas">Mis zonas</a>
@@ -41,7 +41,7 @@
 						<a class="nav-link linkOffset" href="#nosotros">Nosotros</a>
 					</li>
 				</ul>
-				<form class="form-inline my-2 my-lg-0">
+				<form class="form-inline my-2 my-lg-0" >
 					<input class="form-control mr-sm-2" type="search" placeholder="Buscar .." aria-label="Search">
 					<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
 				</form>
@@ -49,15 +49,15 @@
 		</nav>
 		<div class="contenedorGeneral" id="nuevaZona">
 			<h3 class="text-center text-muted">Nueva zona</h3>
-			<div class="formularios row" style="max-width: 1400px;margin: auto;">
-				<div class="imgs imagenesChange" style="flex: 0 0 60%">
-					<div class="rounded float-righ imagenMuestraF" id="imagenesMuestra">
-						<div id="imagesC"></div>
-						<p class="btn btn-outline-primary" onclick="$('#filesUpload').click()">Seleccione una imagen</p>
+			<div class="formularios row" style="max-width: 1400px;margin: auto;">				
+				<form method="POST" action="/subirFoto" enctype="multipart/form-data" class="" style="margin: auto;flex: 0 0 40%;">
+					<div class="imgs imagenesChange" style="flex: 0 0 60%">
+						<div class="rounded" id="imagenesMuestra">
+							<div id="imagesC"></div>
+							<p class="btn btn-outline-primary" onclick="$('#filesUpload').click()">Seleccione una imagen</p>
+						</div>
+						<input type="file" name="filesUpload" id="filesUpload" style="display: none;" multiple="">
 					</div>
-					<input type="file" name="filesUpload" id="filesUpload" style="display: none;" multiple="">
-				</div>
-				<form method="POST" action="#" class="" style="margin: auto;flex: 0 0 40%;">
 					<div class="form-group">
 						<label for="paisSelect">Pais</label>
 						<select class="form-control" id="paisSelect" name="paisSelect" required="">
@@ -126,46 +126,25 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
+					<% if( data.status == -1 || data.status == 0 ){ %> 
+							<tr>Aun no ha subido ninguna zona</tr>
+						<%} else {
+						data.data.forEach(function(datos){%>
+					<tr>						
 						<th scope="row">1</th>
-						<td>Peru</td>
-						<td>Apurimac</td>
-						<td>Andahuaylas</td>
-						<td>Pacucha</td>
-						<td>Sondor</td>
-						<td>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-							cillum dolore eu fugiat nulla paria ...
-						</td>
-						<td>2017/12/15</td>
+						<td><%= datos.pais%></td>
+						<td><%= datos.region%></td>
+						<td><%= datos.provincia%></td>
+						<td><%= datos.distrito%></td>
+						<td><%= datos.zonat%></td>
+						<td><%= datos.descripcion%></td>
+						<td><%= datos.registro%></td>
 						<td>
 							<span class="btn btn-danger">el</span>
 							<span class="btn btn-success">ed</span>
 						</td>
 					</tr>
-					<tr>
-						<th scope="row">1</th>
-						<td>Peru</td>
-						<td>Apurimac</td>
-						<td>Andahuaylas</td>
-						<td>Pacucha</td>
-						<td>Sondor</td>
-						<td>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-							cillum dolore eu fugiat nulla paria ...
-						</td>
-						<td>2017/12/15</td>
-						<td>
-							<span class="btn btn-danger">el</span>
-							<span class="btn btn-success">ed</span>
-						</td>
-					</tr>
+					<%}); }%>					
 				</tbody>
 			</table>
 		</div>
@@ -173,13 +152,20 @@
 			<hr>
 			<h3 class="text-center text-muted">Mis galeria</h3>
 			<div class="contentZonas">
-				<a class="card wow fadeIn" href='#'>
-					<img class="card-img-top wow bounceIn" src="img-page/fondo.jpg" alt="Card image cap">
+				<% if(data.status==-1 || data.status==0){%>
+					<p>No hay zonas</p>
+				<%}  else { 
+				data.data.forEach(function(datos) { %>       			 
+       			 <a class="card wow fadeIn" href='/infozona?zonat=<%= datos.zonat %>' >
+					<img class="card-img-top wow bounceIn" src='<%= datos.fotos[0].url %>' alt="Card image cap">
 					<div class="card-body">
-						<h4 class="card-title wow fadeIn">Sondor</h4>
-						<p class="card-text wow wobble"><small class="text-muted">Agregado hace 9 dias</small></p>
+						<h4 class="card-title wow fadeIn"><%= datos.zonat %></h4>
+						<p class="card-text wow rollIn"><%= datos.comentarios %></p>
+						<p class="card-text wow wobble"><small class="text-muted"><%= datos.registro %></small></p>
 					</div>
 				</a>
+    			<% });
+    			 } %>
 			</div>
 		</div>
 		<div id="nosotros" class="contenedorGeneral">

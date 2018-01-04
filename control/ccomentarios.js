@@ -5,7 +5,7 @@ moment.locale("es");
 exports.setup=function(_modelo){
 	modelo=_modelo
 };
-exports.setup=function(req, res){
+exports.mostrarComentariosZonas=function(req, res){
 	function out(){
 		dato=req.query;	
 		data={};

@@ -77,8 +77,8 @@
 			<h3 class="title wow slideInLeft">Zonas turisticas</h3 class="title">
 			<div class="contentZonas">
 				<% data.forEach(function(datos) { %>       			 
-       			 <a class="card wow fadeIn" href='/infozona?zonat="<%= datos.zonat %>"' >
-					<img class="card-img-top wow bounceIn" src="img-page/fondo.jpg" alt="Card image cap">
+       			 <a class="card wow fadeIn" href='/infozona?zonat=<%= datos.zonat %>' >
+					<img class="card-img-top wow bounceIn" src='<%= datos.fotos[0].url %>' alt="Card image cap">
 					<div class="card-body">
 						<h4 class="card-title wow fadeIn"><%= datos.zonat %></h4>
 						<p class="card-text wow rollIn"><%= datos.comentarios %></p>
@@ -126,7 +126,19 @@
 			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 		</div>
 	</body>
-	<!-- Modal SingIn -->
+	<!-- Modal SingIn -->	
+    <% if(data_log==-1 || data_log==0){%>
+    <script type="text/javascript">
+      $("#ingresoSistem").modal();
+      $("#id_msn_bad").show(500);
+    </script>
+		<%}else{%>
+	<script type="text/javascript">
+      $("#ingresoSistem").modal("hide");
+      $("#id_msn_bad").hide(500);
+    </script>
+	
+	<%}%>
 	<div class="modal" tabindex="-1" role="dialog" id="ingresoSistem">
 		<div class="modal-dialog" role="document">
 			<form class="modal-content" action="/login" method="POST">
@@ -145,10 +157,10 @@
 						<label for="password_log">Contraseña</label>
 						<input type="password" class="form-control" id="password_log" name="password_log" required="">
 					</div>
-					<div class="alert alert-success" role="alert">
-						En momentos le redirigimos a la pagina administrativa
+					<div class="alert alert-success" role="alert" id="id_msn_ok">
+						En momentos le redirigimos a la pagina administrativa <%= data_log %>
 					</div>
-					<div class="alert alert-danger" role="alert">
+					<div class="alert alert-danger" role="alert" id="id_msn_bad">
 						Ocurrio un error, ingrese los datos corectos
 					</div>
 				</div>

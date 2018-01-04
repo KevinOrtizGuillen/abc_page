@@ -6,6 +6,11 @@ var express = require('express')
 , session=require('express-session')
 , bodyParser=require('body-parser')
 , async=require('async')
+//
+, path=require('path')
+, multipart=require('connect-multiparty')
+, fs=require('fs')
+//
 , control=require('./control')
 , modelo=require('./modelo')
 , config=require('./config')
@@ -18,33 +23,14 @@ var express = require('express')
   res.header('Access-Control-Allow-Headers','Content-type,x-access-token');
   next();
 };
- /* morgan  = require('morgan')*/
-/*app.use(morgan('combined'))*/
-//
-
-/*
-var row=new modelo.usuarios;
-row.nombres="Kevin";
-row.apellidos="Ortiz Guillen";
-row.email="esdekevin@gmail.com";
-row.contraseña="ffb4761cba839470133bee36aeb139f58d7dbaa9";//kevin
-row.imagen="";
-row.permisos="A";
-row.registro=new Date();
-row.save(function(err){
-  if (err) {
-    console.log("err");
-  }else{
-    console.log(row.nombres +"addeded");
-  }
-});*/ 
-//
 //cargarData();
 function compile(str,path){
   return stylus(str)
   .set('filename',path)
   .use(nib())
 }
+multipartMiddleware=multipart();
+var urlImagen='';
 var app = express();
 app.set('views',__dirname+'/views');
 //app.set('view engine','ejs');
@@ -56,13 +42,6 @@ app.use(session({ secret: '023197422617bce43335cbd3c675aeed' }));
 app.use(stylus.middleware({src:__dirname+'/public',compile:compile }));
 app.use(express.static(__dirname+'/public'));  
 app.use(AllowCroossDomain);
-
-//
-/*
-app.use(express.bodyParser());
-app.use(express.bodyParser({uploadDir:'./uploads'}));
-*/
-//    
 app.engine('html', require('ejs').renderFile);
 
 server=app.listen(port, ip);
@@ -73,20 +52,23 @@ function IsAuthenticated(req,res,next){
   if (req.session.usuario_id) {
     next();
   }else{
-    res.redirect('/login?redirect='+path);
+    res.status(301).redirect('open');//res.redirect('/login?redirect='+path);
   }
 }
 control.plataforma.setup(modelo);
 control.usuarios.setup(modelo);
 control.zonas.setup(modelo);
+control.fotos.setup(modelo);
 
-app.get('/', control.plataforma.open);
+app.get('/', IsAuthenticated,control.plataforma.adminPage);
+app.get('/open', control.plataforma.open);
 app.get('/login',control.plataforma.loginGet);
 app.post('/login',control.plataforma.loginPost);
+app.get('/logout',IsAuthenticated,control.plataforma.logoutGET)
 app.post('/nUsuarioPost',control.plataforma.nUsuarioPost);
 app.get('/infozona',control.zonas.infozonaGET);
-app.get('/adminLog',control.plataforma.adminPage);
-
+app.get('/adminLog',IsAuthenticated,control.plataforma.adminPage);
+app.post('/subirFoto',IsAuthenticated,multipartMiddleware,control.fotos.subirFoto);
 
 
 //cargar datos al sistema
@@ -107,7 +89,7 @@ function cargarData(){
     val.calificacion=4;
   //
     var foto={};
-    foto.url="./img-page/foto2.jpg";
+    foto.url="img-page/img1.jpg";
     foto.valoracion=[val];
   //
     var ubic={};
