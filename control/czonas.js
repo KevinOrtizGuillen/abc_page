@@ -10,7 +10,7 @@ exports.infozonaGET=function(req,res){
 	function out(){	
 		data=req.query;			
 		zonatb=data.zonat;		
-		modelo.usuarios.findOne({"zonat.zonat":zonatb},{zonat:0},function(err,row){
+		modelo.usuarios.findOne({"zonat.zonat":zonatb},{zonat:1},function(err,row){
 			var data={};
 			if (err) {
 				data.status=-1;
@@ -28,7 +28,8 @@ exports.infozonaGET=function(req,res){
 				//console.log(row);	
 				e=row;						
 				/*row.forEach(function(e){*/
-					recorre=e.zonat;					
+					recorre=e.zonat;	
+					console.log(e);				
 					recorre.forEach(function(e1){						
 						objListar={};
 						objListar.zonat=e1.zonat;
