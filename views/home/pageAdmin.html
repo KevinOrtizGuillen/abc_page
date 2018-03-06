@@ -14,6 +14,7 @@
 		<script src="../js/popper.min.js" crossorigin="anonymous"></script>
 		<script src="../js/bootstrap.min.js" crossorigin="anonymous"></script>
 		<script src="../js/wow.min.js" crossorigin="anonymous"></script>
+		<script src="../js/js.js"></script>
 	</head>
 	<body>
 		<nav class="navbar navbar-expand-lg menupersonal" style="background: gray;">
@@ -49,8 +50,8 @@
 		</nav>
 		<div class="contenedorGeneral" id="nuevaZona">
 			<h3 class="text-center text-muted">Nueva zona</h3>
-			<div class="formularios row" style="max-width: 1400px;margin: auto;">				
-				<form method="POST" action="/subirFoto" enctype="multipart/form-data" class="" style="margin: auto;flex: 0 0 40%;">
+			<div class="formularios row" style="max-width: 1400px;margin: auto;"><!--action="/subirFoto"-->
+				<form method="POST"  enctype="multipart/form-data" class="" style="margin: auto;flex: 0 0 40%;">
 					<div class="imgs imagenesChange" style="flex: 0 0 60%">
 						<div class="rounded" id="imagenesMuestra">
 							<div id="imagesC"></div>
@@ -98,13 +99,11 @@
 						<label for="desc_in">Descripcion</label>
 						<textarea class="form-control" id="desc_in" name="desc_in" placeholder="Un lugar turistico construido por los chankas ..." required="" rows="10"></textarea>
 					</div>
-					<div class="form-group alert alert-success" role="alert">
-						Registrado con exito
+					<div class="form-group" id="resultado_guardar">
+						
 					</div>
-					<div class="form-group alert alert-danger" role="alert">
-						Ocurrio un error
-					</div>
-					<button type="submit" class="btn btn-outline-success">Guardar</button>
+					<!--<button type="submit" class="btn btn-outline-success">Guardar</button>-->
+					<button type="button" class="btn btn-outline-success" onclick="EnviarP('/subirFoto?filesUpload='+$('#filesUpload').val()+'&paisSelect='+$('#paisSelect').val()+'&regSelect='+$('#regSelect').val()+'&provSelect='+$('#provSelect').val()+'&distSelect='+$('#distSelect').val()+'&zona_in='+$('#zona_in').val()+'&desc_in='+$('#desc_in').val(),'resultado_guardar');"> Probar</button>
 				</form>
 			</div>
 		</div>
@@ -127,7 +126,17 @@
 				</thead>
 				<tbody>
 					<% if( data.status == -1 || data.status == 0 ){ %> 
-							<tr>Aun no ha subido ninguna zona</tr>
+							<tr>
+								<th>#</th>
+								<th>Pais</th>
+								<th>Region</th>
+								<th>Provincia</th>
+								<th>Distrito</th>
+								<th>Zona</th>
+								<th>Descripcion</th>
+								<th>Fecha</th>
+								<th>op.</th>
+							</tr>
 						<%} else {
 						data.data.forEach(function(datos){%>
 					<tr>						

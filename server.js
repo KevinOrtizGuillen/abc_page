@@ -23,7 +23,7 @@ var express = require('express')
   res.header('Access-Control-Allow-Headers','Content-type,x-access-token');
   next();
 };
-//cargarData();
+//cargarData();//////////////////////////////////////////////////////////////////esta linea
 function compile(str,path){
   return stylus(str)
   .set('filename',path)

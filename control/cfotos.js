@@ -45,7 +45,8 @@ exports.subirFoto=function(req, res){
 	function out(){
 		nombre="";
 		//console.log(req.files);
-		dato=req.body;
+		//dato=req.body;
+		dato=req.query;
 		USUARIO_T=null;
 		ZONAT_T=null;
 		FOTO_T=null;
@@ -88,7 +89,7 @@ exports.subirFoto=function(req, res){
 					var nameImagen=req.files.filesUpload.name;
 					console.log(data);
 					if (err) {
-						console.log('Sucedio un error: '+err);
+						console.log('cfotos Sucedio un error: '+err);
 					}else{
 						console.log('Nombre de la Imagen es: '+nameImagen);
 						var nuevoDirectory='./public/img-page/'+nameImagen;
@@ -107,16 +108,17 @@ exports.subirFoto=function(req, res){
 								ZONAT_T.fotos=fotos;																							
 								modelo.usuarios.findOne({_id:req.session.usuario_id},{},function(err,row){
 									if (err) {
-										data.msn='plataforma codeErr: -1';
+										data.msn='cfotos codeErr: -1';
 										data.status=-1;
 										data.data=null;
-										console.log("plataforma codeErr: -1");						
+										console.log("cfotos codeErr: -1");						
 									}else if (row===null) {
-										data.msn='plataforma codeErr: 0';
+										data.msn='cfotos codeErr: 0';
 										data.status=0;
 										data.data=null;
-										console.log("plataforma codeErr: 0");						
+										console.log("cfotos codeErr: 0");						
 									}else{
+										console.log("cfotos codeErr: 1");
 										row.zonat.push(ZONAT_T);
 										row.save(callback);
 									}
@@ -128,8 +130,14 @@ exports.subirFoto=function(req, res){
 				});
 			}],
 			function(err){
-				if (err) return next(err);
-				res.redirect('/');
+				//if (err) return next(err);
+				//res.redirect('/');
+				if (err) {
+					return next(err);
+					res.render('./res/g_foto_fail_1.html',{});
+				}else{
+					res.render('./res/g_foto_ok_1.html',{});
+				}
 			});
 	}
 	return out();
