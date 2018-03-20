@@ -68,7 +68,8 @@ exports.loginGet=function(req, res){
 };
 exports.loginPost=function(req, res){
 	function out( ){
-	var dato=req.body;
+		console.log(req.query);
+	var dato=req.query;
 		console.log(dato.correo_log);
 		modelo.usuarios.findOne({email: dato.correo_log,contrasena:crypto.createHash('sha1').update(dato.password_log).digest("hex")},{},function(err,row){
 			var data={};
@@ -83,7 +84,8 @@ exports.loginPost=function(req, res){
 				data.status=0;
 				data.data=null;
 				console.log("plataforma codeErr: 0");
-				res.redirect('/open?status=0');	
+				//res.redirect('/open?status=0');	
+				res.render('./res/login_fail_1.html');
 			}else{
 				req.session.usuario_id=row._id;
 				req.session.usuario_email=row.email;
@@ -103,7 +105,8 @@ exports.loginPost=function(req, res){
 			    console.log("plataforma codeErr: 1");
 				//res.render('open.html',{title:"hola a todos",data:data});
 				//res.redirect('/',{title:"hola a todos",data:data});
-				res.redirect('/');
+				res.render('./res/login_ok_1.html');
+				//res.redirect('/');
 			}
 			//res.redirect('/');				
 		});			
@@ -112,7 +115,7 @@ exports.loginPost=function(req, res){
 };
 exports.nUsuarioPost=function(req,res){
 	function out( ){
-		var dato=req.body;
+		var dato=req.query;
 		console.log('aqui dato');
 		console.log(dato);
 		//
@@ -142,7 +145,7 @@ exports.nUsuarioPost=function(req,res){
 						if (err) {
 							data.msn='codeErr: -1';
 							data.status=-1;
-							console.log('plataforma codeErr: -1');
+							console.log('plataforma-nusuario codeErr: -1');
 						}else{
 							//creamos session
 								req.session.usuario_id=row._id;
@@ -152,17 +155,19 @@ exports.nUsuarioPost=function(req,res){
 							//
 							data.msn='codeErr: 1';
 							data.status=0;
-							console.log('plataforma codeErr: 1');
+							console.log('plataforma-nusuario codeErr: 1');
 						}
-					 res.render('./home/pageAdmin.html',{data:data});
+					res.render('./res/registro_ok_1.html',{});
+					 //res.render('./home/pageAdmin.html',{data:data});
 					});
 				//	
 			}else{
 				
-				  data.msn='Succesfull';
+				  data.msn='Error';
 				  data.status=1;
-			    console.log("plataforma codeErr: 1");
-				res.redirect('/open');
+			      console.log("plataforma codeErr: 1");
+				  //res.redirect('/open');
+				  res.render("./res/registro_fail_1.html",{});
 			}
 			//res.redirect('/');				
 		});

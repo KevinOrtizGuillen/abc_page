@@ -23,7 +23,7 @@ var express = require('express')
   res.header('Access-Control-Allow-Headers','Content-type,x-access-token');
   next();
 };
-//cargarData();
+//cargarData();//////////////////////////////////////////////////////////////////esta linea
 function compile(str,path){
   return stylus(str)
   .set('filename',path)
@@ -114,7 +114,7 @@ function cargarData(){
       row.nombres="saul";
       row.apellidos="Ortiz Guillen";
       row.email="saul@gmail.com";
-      row.contraseña="ffb4761cba839470133bee36aeb139f58d7dbaa9";//kevin
+      row.contrasena="ffb4761cba839470133bee36aeb139f58d7dbaa9";//kevin
       row.imagen="";
       row.permisos="A";
       row.registro=new Date(); 
