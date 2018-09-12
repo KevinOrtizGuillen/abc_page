@@ -61,6 +61,7 @@ exports.infozonaGET=function(req,res){
 						//console.log('aqui en info zona');	
 						//console.log(e1);
 					});					
+
 				/*});*/
 				data.data=listar[0];
 				res.render('./home/info.html',{data:data.data});
