@@ -28,7 +28,7 @@
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 					<li class="nav-item active">
 						<a class="nav-link" href="/logout" >Regresar</a>
-					</li>
+					</li>					
 					<li class="nav-item active">
 						<a class="nav-link linkOffset" href="#misZonas">Mis zonas</a>
 					</li>
@@ -51,7 +51,7 @@
 		<div class="contenedorGeneral" id="nuevaZona">
 			<h3 class="text-center text-muted">Nueva zona</h3>
 			<div class="formularios row" style="max-width: 1400px;margin: auto;"><!--action="/subirFoto"-->
-				<form method="POST"  enctype="multipart/form-data" class="" style="margin: auto;flex: 0 0 40%;">
+				<form method="POST" action="/subirFoto" enctype="multipart/form-data" class="" style="margin: auto;flex: 0 0 40%;">
 					<div class="imgs imagenesChange" style="flex: 0 0 60%">
 						<div class="rounded" id="imagenesMuestra">
 							<div id="imagesC"></div>
@@ -102,8 +102,8 @@
 					<div class="form-group" id="resultado_guardar">
 						
 					</div>
-					<!--<button type="submit" class="btn btn-outline-success">Guardar</button>-->
-					<button type="button" class="btn btn-outline-success" onclick="EnviarP('/subirFoto?filesUpload='+$('#filesUpload').val()+'&paisSelect='+$('#paisSelect').val()+'&regSelect='+$('#regSelect').val()+'&provSelect='+$('#provSelect').val()+'&distSelect='+$('#distSelect').val()+'&zona_in='+$('#zona_in').val()+'&desc_in='+$('#desc_in').val(),'resultado_guardar');"> Probar</button>
+					<button type="submit" class="btn btn-outline-success">Guardar</button>
+					<!--<button type="button" class="btn btn-outline-success" onclick="EnviarP('/subirFoto?filesUpload='+$('#filesUpload').val()+'&paisSelect='+$('#paisSelect').val()+'&regSelect='+$('#regSelect').val()+'&provSelect='+$('#provSelect').val()+'&distSelect='+$('#distSelect').val()+'&zona_in='+$('#zona_in').val()+'&desc_in='+$('#desc_in').val(),'resultado_guardar');"> Probar</button>-->
 				</form>
 			</div>
 		</div>

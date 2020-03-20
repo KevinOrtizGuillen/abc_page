@@ -16,7 +16,8 @@ var express = require('express')
 , config=require('./config')
 , port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080
 , ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
-, db=mongoose.createConnection(config.mongodb.url)
+//, db=mongoose.createConnection(config.mongodb.url)
+, db=mongoose.connect(config.mongodb.url, { useNewUrlParser: true })
 , AllowCroossDomain=function(req,res,next){
   res.header('Access-Control-Allow-Origin','*');
   res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE');
@@ -36,9 +37,16 @@ app.set('views',__dirname+'/views');
 //app.set('view engine','ejs');
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.json());
-app.use(express.urlencoded());
+//app.use(express.urlencoded());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(session({ secret: '023197422617bce43335cbd3c675aeed' }));
+//app.use(session({ secret: '023197422617bce43335cbd3c675aeed' }));
+app.use(session({
+  secret:'023197422617bce43335cbd3c675aeed',
+  name: '023197422617bce43335cbd3c675aeed',
+  proxy: true,
+  saveUninitialized: true
+}));
 app.use(stylus.middleware({src:__dirname+'/public',compile:compile }));
 app.use(express.static(__dirname+'/public'));  
 app.use(AllowCroossDomain);
@@ -69,6 +77,7 @@ app.post('/nUsuarioPost',control.plataforma.nUsuarioPost);
 app.get('/infozona',control.zonas.infozonaGET);
 app.get('/adminLog',IsAuthenticated,control.plataforma.adminPage);
 app.post('/subirFoto',IsAuthenticated,multipartMiddleware,control.fotos.subirFoto);
+//app.post('/subirFoto',IsAuthenticated,control.fotos.subirFoto);
 
 
 //cargar datos al sistema
@@ -128,4 +137,4 @@ function cargarData(){
       });     
 }
 //change data
-cargarData();
+//cargarData();
